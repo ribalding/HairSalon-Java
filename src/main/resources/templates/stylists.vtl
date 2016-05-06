@@ -1,0 +1,18 @@
+<h1>Stylists</h1>
+<div class="row">
+  <div class="col-sm-4">
+    <ul>
+      #foreach($stylist in $stylistList)
+        <li><a href="/stylist/$stylist.getId()">$stylist.getName()</a></li>
+      #end
+    </ul>
+  </div>
+  #if($confirmShowStylist)
+    <div class="col-sm-8 borderLeft">
+      <h2>$showStylist.getName()</h2>
+      <h3>Speciality: $showStylist.getSpeciality()</h3>
+      <h3>Price: $showStylist.getPrice() Dollars Per Hour</h3>
+    </div>
+  #end
+</div>
+<a href="/">Return</a>

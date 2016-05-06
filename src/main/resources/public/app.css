@@ -1,0 +1,13 @@
+body{
+  background-color: #00444A;
+  color: #eaeaea;
+  font-family: 'Exo 2', sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+.borderLeft{
+  border-left: 2px solid #eaeaea;
+}
