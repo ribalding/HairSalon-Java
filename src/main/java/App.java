@@ -56,7 +56,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/stylist/:id", (request, response) -> {
+    get("/stylists/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Stylist newStylist = Stylist.find(Integer.parseInt(request.params(":id")));
       model.put("showStylist", newStylist);
@@ -69,6 +69,42 @@ public class App {
       model.put("template", "templates/stylists.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("editStylist/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/stylists.vtl");
+
+      Stylist newStylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      model.put("showStylist", newStylist);
+      Boolean confirmShowStylist = true;
+      model.put("confirmShowStylist", confirmShowStylist);
+
+      Boolean confirmShowEditStylist = true;
+      model.put("confirmShowEditStylist", confirmShowEditStylist);
+
+      List<Stylist> stylistList = Stylist.all();
+      model.put("stylistList", stylistList);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("confirmStylist/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Stylist newStylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      model.put("showStylist", newStylist);
+
+      String stylist_name = request.queryParams("stylist_name");
+      String speciality = request.queryParams("speciality");
+      int price = Integer.parseInt(request.queryParams("price"));
+      newStylist.edit(stylist_name, speciality, price);
+
+      List<Stylist> stylistList = Stylist.all();
+      model.put("stylistList", stylistList);
+      model.put("template", "templates/stylists.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
   }
 
 

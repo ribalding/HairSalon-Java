@@ -63,6 +63,18 @@ public class Stylist {
     }
   }
 
+  public void edit(String edit_stylist_name, String edit_speciality, int edit_price){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stylists SET stylist_name = :stylist_name, speciality = :speciality, price = :price WHERE id=:id";
+      con.createQuery(sql, true)
+      .addParameter("stylist_name", edit_stylist_name)
+      .addParameter("speciality", edit_speciality)
+      .addParameter("price", edit_price)
+      .addParameter("id", this.id)
+      .executeUpdate();
+    }
+  }
+
   public static Stylist find(int id){
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM stylists WHERE id=:id";

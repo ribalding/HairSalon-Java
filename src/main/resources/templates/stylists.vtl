@@ -3,7 +3,7 @@
   <div class="col-sm-4">
     <ul>
       #foreach($stylist in $stylistList)
-        <li><a href="/stylist/$stylist.getId()">$stylist.getName()</a></li>
+        <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
       #end
     </ul>
   </div>
@@ -12,7 +12,28 @@
       <h2>$showStylist.getName()</h2>
       <h3>Speciality: $showStylist.getSpeciality()</h3>
       <h3>Price: $showStylist.getPrice() Dollars Per Hour</h3>
+      
+      <a href="/editStylist/$showStylist.getId()">Edit Stylist</a>
+      #if ($confirmShowEditStylist)
+        <h2>Edit Stylist</h2>
+        <form action="/confirmStylist/$showStylist.getId()" method="post">
+          <div class="form-group">
+            <label for="stylist_name">Name</label>
+            <input type="text" name="stylist_name" id="stylist_name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="speciality">Speciality</label>
+            <input type="text" name="speciality" id="speciality" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="price">Price Per Hour</label>
+            <input type="text" name="price" id="price" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      #end
     </div>
   #end
 </div>
+
 <a href="/">Return</a>

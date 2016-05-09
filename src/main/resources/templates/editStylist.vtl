@@ -1,0 +1,20 @@
+<h1>Edit Stylist</h1>
+<h2>Add Stylist</h2>
+<form action="/addStylist" method="post">
+  <div class="form-group">
+    <label for="stylist_name">Name</label>
+    <input type="text" name="stylist_name" id="stylist_name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="speciality">Speciality</label>
+    <input type="text" name="speciality" id="speciality" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="price">Price Per Hour</label>
+    <input type="text" name="price" id="price" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+#if($confirmStylist)
+  <h3>Stylist Saved Successfully</h3>
+#end
